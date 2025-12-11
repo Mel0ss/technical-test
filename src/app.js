@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
-const productsRoutes = require('./routes/products.js');
-const port = 3000;
+const productsRoutes = require('./routes/routes.js');
 
 app.use(express.json());
 
 // Rutas para productos
 app.use('/products', productsRoutes);
 
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
+
+module.exports = app;

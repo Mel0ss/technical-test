@@ -4,8 +4,8 @@
     "description": "API base para prueba técnica de backend",
     "main": "app.js",
     "scripts": {
-        "start": "node ap/app.js",
-        "dev": "nodemon ap/app.js"
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
     },
     "dependencies": {
         "express": "^4.22.1",
