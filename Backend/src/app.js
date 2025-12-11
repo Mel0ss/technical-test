@@ -11,4 +11,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+const itemRoutes = require('./routes/routes');
+app.use('/modelo', itemRoutes);
+
 module.exports = app;
