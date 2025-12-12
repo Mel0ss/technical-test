@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "1765583328886",
+    "name": "Producto prueba",
+    "descr": "Descrip",
+    "price": 10,
+    "creationDate": "2025-12-12T23:48:48.887Z"
+  }
+]

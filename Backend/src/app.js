@@ -1,17 +1,16 @@
 const express = require('express');
-const app = express();
-const productsRoutes = require('./routes/routes.js');
+const cors = require('cors');
+const routes = require('./routes/routes');
 
+const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-// Rutas para productos
-app.use('/products', productsRoutes);
+app.use('/products', routes);
 
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+  res.json({ status: 'ok' });
 });
-
-const itemRoutes = require('./routes/routes');
-app.use('/modelo', itemRoutes);
 
 module.exports = app;

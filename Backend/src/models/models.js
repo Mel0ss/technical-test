@@ -1,13 +1,13 @@
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 
 const filePath = path.join(__dirname, '../data/data.json');
 
-function loadData(){
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
+function loadData() {
+  try {
+    const data = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(data);
-  } catch (err) {
+  } catch {
     return [];
   }
 }
@@ -31,7 +31,10 @@ module.exports = {
 
     const newItem = {
       id: Date.now().toString(),
-      ...payload
+      name: payload.name,
+      descr: payload.descr,
+      price: payload.price,
+      creationDate: new Date().toISOString()
     };
 
     items.push(newItem);
