@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getItems, createItem, updateItem, deleteItem } from "./api";
+import "./App.css";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -47,33 +48,49 @@ function App() {
     setPrice(item.price);
   }
 
-  return (
-    <div style={{ padding: 20 }}>
+    return (
+    <div className="container">
       <h1>Productos</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input placeholder="Nombre" value={name} onChange={e => setName(e.target.value)} />
-        <input placeholder="Descripción" value={descr} onChange={e => setDescr(e.target.value)} />
-        <input type="number" placeholder="Precio" value={price} onChange={e => setPrice(e.target.value)} />
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          placeholder="Nombre"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <input
+          placeholder="Descripción"
+          value={descr}
+          onChange={e => setDescr(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Precio"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+        />
         <button>{editId ? "Actualizar" : "Crear"}</button>
       </form>
 
-      <hr />
-
-      <ul>
+      <div className="list">
         {items.map(item => (
-          <li key={item.id}>
-            <strong>{item.name}</strong> – ${item.price}
-            <br />
-            {item.descr}
-            <br />
-            <small>{item.creationDate}</small>
-            <br />
-            <button onClick={() => startEdit(item)}>Editar</button>
-            <button onClick={() => deleteItem(item.id).then(loadItems)}>Eliminar</button>
-          </li>
+          <div className="card" key={item.id}>
+            <div className="card-info">
+              <strong>{item.name}</strong>
+              <p>{item.descr}</p>
+              <p>${item.price}</p>
+              <small>{item.creationDate}</small>
+            </div>
+
+            <div className="card-actions">
+              <button onClick={() => startEdit(item)}>Editar</button>
+              <button onClick={() => deleteItem(item.id).then(loadItems)}>
+                Eliminar
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
